@@ -1,0 +1,3 @@
+go run {PATH_FILE} - Executa o código
+go fmt {PATH_FILE} - Formata o arquivo
+got build - Compila o código
