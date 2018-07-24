@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 	fmt.Println("Texto final: " + text_end)
 	fmt.Println(print_author)
 	fmt.Println("Author: " + author)
-	fmt.Println(ano)
+	fmt.Println("Ano: " + strconv.Itoa(ano))
 
 	// Comentário 2
 }
