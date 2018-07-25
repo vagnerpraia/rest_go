@@ -5,6 +5,14 @@ import (
 	"strconv"
 )
 
+// Definindo tipo personalizado ou structs
+type Carro struct {
+	nome  string
+	ano   int
+	preco float32
+	cor   string
+}
+
 func main() {
 	/*
 		Comentário 1
@@ -31,5 +39,13 @@ func main() {
 	fmt.Println("Author: " + author)
 	fmt.Println("Ano: " + strconv.Itoa(ano))
 
-	// Comentário 2
+	// Utilizando tipo personalizado
+	var carro Carro = Carro{
+		nome:  "Teste Um",
+		ano:   2018,
+		preco: 50000.0,
+		cor:   "Preto",
+	}
+
+	fmt.Println(carro)
 }
