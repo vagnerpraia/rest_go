@@ -40,12 +40,23 @@ func main() {
 	fmt.Println("Ano: " + strconv.Itoa(ano))
 
 	// Utilizando tipo personalizado
-	var carro Carro = Carro{
+	var carro1 = Carro{
 		nome:  "Teste Um",
 		ano:   2018,
 		preco: 50000.85,
 		cor:   "Preto",
 	}
 
-	fmt.Println("Nome: " + carro.nome)
+	var carro2 = Carro{
+		"Teste Dois",
+		2018,
+		30000.0,
+		"Preto",
+	}
+
+	var carro3 = Carro{"Teste Três", 2017, 80000, "Preto"}
+
+	fmt.Println("Nome: " + carro1.nome)
+	fmt.Println(carro2)
+	fmt.Println(carro3)
 }
