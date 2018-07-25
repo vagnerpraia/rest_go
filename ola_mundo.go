@@ -43,9 +43,9 @@ func main() {
 	var carro Carro = Carro{
 		nome:  "Teste Um",
 		ano:   2018,
-		preco: 50000.0,
+		preco: 50000.85,
 		cor:   "Preto",
 	}
 
-	fmt.Println(carro)
+	fmt.Println("Nome: " + carro.nome)
 }
