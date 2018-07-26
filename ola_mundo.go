@@ -124,6 +124,39 @@ func main() {
 	fmt.Println(lista4)
 	fmt.Println(lista4[0])
 	fmt.Println(lista4[0:3])
+
+	// Exemplos de condicionais
+	flag1 := true
+	flag2 := false
+	idade := 18
+
+	if flag1 {
+		fmt.Println("1: Ok")
+	} else {
+		fmt.Println("1: Error")
+	}
+
+	if flag1 && flag2 {
+		fmt.Println("2: Ok")
+	} else {
+		fmt.Println("2: Error")
+	}
+
+	if flag1 || flag2 {
+		fmt.Println("3: Ok")
+	} else {
+		fmt.Println("3: Error")
+	}
+
+	if idade >= 65 {
+		fmt.Println("Idoso")
+	} else if idade >= 18 {
+		fmt.Println("Adulto")
+	} else if idade >= 12 {
+		fmt.Println("Adolescente")
+	} else if idade < 12 {
+		fmt.Println("Criança")
+	}
 }
 
 func mostrarNome(carro Carro) {
