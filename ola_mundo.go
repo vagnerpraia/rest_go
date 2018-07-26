@@ -87,6 +87,16 @@ func main() {
 	fmt.Println(adicionarImpostos(carro1))
 
 	mostrarNomes(1, carro1.nome, carro2.nome)
+
+	// Exemplos de array
+	var lista1 [10]string
+	lista2 := [10]string{"1", "2"}
+
+	lista1[0] = "item1"
+	lista1[1] = "item2"
+
+	fmt.Println(lista1)
+	fmt.Println(lista2)
 }
 
 func mostrarNome(carro Carro) {
