@@ -59,4 +59,10 @@ func main() {
 	fmt.Println("Nome: " + carro1.nome)
 	fmt.Println(carro2)
 	fmt.Println(carro3)
+
+	mostrarNome(carro3)
+}
+
+func mostrarNome(carro Carro) {
+	fmt.Println(carro.nome)
 }
