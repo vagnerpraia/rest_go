@@ -22,6 +22,19 @@ func main() {
 	var text_start string = "Inicío do olá mundo"
 	var text_end string
 	var count int = 4546846 * 3
+	var (
+		teste1 float32
+		teste2 float32
+	)
+
+	teste1 = 1
+	teste2 = 2
+
+	if teste1 > teste2 {
+		println("Ok")
+	} else {
+		println("Error")
+	}
 
 	// Definição de variável com tipagem automática
 	author := "Vagner Praia"
@@ -61,8 +74,14 @@ func main() {
 	fmt.Println(carro3)
 
 	mostrarNome(carro3)
+
+	println(somarValor(carro1, carro2))
 }
 
 func mostrarNome(carro Carro) {
 	fmt.Println(carro.nome)
+}
+
+func somarValor(carro1 Carro, carro2 Carro) float32 {
+	return carro1.preco + carro2.preco
 }
