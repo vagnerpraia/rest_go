@@ -97,6 +97,20 @@ func main() {
 
 	fmt.Println(lista1)
 	fmt.Println(lista2)
+	fmt.Println(lista1[1])
+
+	// Exemplos de array multidimensionais
+	var lista3 [3][2]string
+	lista3[0][0] = "Item A1"
+	lista3[0][1] = "Item A2"
+	lista3[1][0] = "Item B1"
+	lista3[1][1] = "Item B2"
+	lista3[2][0] = "Item C1"
+	lista3[2][1] = "Item C2"
+
+	fmt.Println(lista3)
+	fmt.Println(lista3[0])
+	fmt.Println(lista3[2][1])
 }
 
 func mostrarNome(carro Carro) {
