@@ -81,13 +81,14 @@ func main() {
 
 	mostrarNome(carro3)
 
-	println(somarValor(carro1, carro2))
+	fmt.Println(somarValor(carro1, carro2))
 }
 
 func mostrarNome(carro Carro) {
 	fmt.Println(carro.nome)
 }
 
-func somarValor(carro1 Carro, carro2 Carro) float32 {
-	return carro1.preco + carro2.preco
+func somarValor(carro1 Carro, carro2 Carro) (float32, string) {
+	resultadoSoma := carro1.preco + carro2.preco
+	return resultadoSoma, carro1.nome
 }
