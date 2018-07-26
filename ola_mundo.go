@@ -117,9 +117,13 @@ func main() {
 
 	lista4 = append(lista4, "item novo 1")
 	lista4 = append(lista4, "item novo 2")
+	lista4 = append(lista4, "item novo 3")
+	lista4 = append(lista4, "item novo 4")
+	lista4 = append(lista4, "item novo 5")
 
 	fmt.Println(lista4)
 	fmt.Println(lista4[0])
+	fmt.Println(lista4[0:3])
 }
 
 func mostrarNome(carro Carro) {
