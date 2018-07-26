@@ -88,7 +88,13 @@ func mostrarNome(carro Carro) {
 	fmt.Println(carro.nome)
 }
 
-func somarValor(carro1 Carro, carro2 Carro) (float32, string) {
-	resultadoSoma := carro1.preco + carro2.preco
-	return resultadoSoma, carro1.nome
+func somarValor(carro1 Carro, carro2 Carro) (string, float32) {
+	resultado := carro1.preco + carro2.preco
+	return carro1.nome + " " + carro2.nome, resultado
+}
+
+func multiplicarValor(carro Carro, quantidade int) (nome string, resultado float32) {
+	nome = carro.nome
+	resultado = carro.preco * float32(quantidade)
+	return
 }
