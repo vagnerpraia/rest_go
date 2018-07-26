@@ -85,6 +85,8 @@ func main() {
 
 	fmt.Println(multiplicarValor(carro1, 3))
 	fmt.Println(adicionarImpostos(carro1))
+
+	mostrarNomes(1, carro1.nome, carro2.nome)
 }
 
 func mostrarNome(carro Carro) {
@@ -110,4 +112,11 @@ func adicionarImpostos(carro Carro) (precoFinal float32) {
 	precoFinal = calcularImposto()
 
 	return
+}
+
+func mostrarNomes(teste int, nomes ...string) {
+	fmt.Println(teste)
+	for _, nome := range nomes {
+		fmt.Println(nome)
+	}
 }
