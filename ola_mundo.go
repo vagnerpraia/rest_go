@@ -82,6 +82,9 @@ func main() {
 	mostrarNome(carro3)
 
 	fmt.Println(somarValor(carro1, carro2))
+
+	fmt.Println(multiplicarValor(carro1, 3))
+	fmt.Println(adicionarImpostos(carro1))
 }
 
 func mostrarNome(carro Carro) {
@@ -96,5 +99,15 @@ func somarValor(carro1 Carro, carro2 Carro) (string, float32) {
 func multiplicarValor(carro Carro, quantidade int) (nome string, resultado float32) {
 	nome = carro.nome
 	resultado = carro.preco * float32(quantidade)
+	return
+}
+
+func adicionarImpostos(carro Carro) (precoFinal float32) {
+	calcularImposto := func() float32 {
+		return carro.preco * 2
+	}
+
+	precoFinal = calcularImposto()
+
 	return
 }
