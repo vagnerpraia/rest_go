@@ -111,6 +111,15 @@ func main() {
 	fmt.Println(lista3)
 	fmt.Println(lista3[0])
 	fmt.Println(lista3[2][1])
+
+	// Exemplos de slice/array dinâmico
+	var lista4 []string
+
+	lista4 = append(lista4, "item novo 1")
+	lista4 = append(lista4, "item novo 2")
+
+	fmt.Println(lista4)
+	fmt.Println(lista4[0])
 }
 
 func mostrarNome(carro Carro) {
