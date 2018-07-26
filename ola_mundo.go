@@ -36,6 +36,12 @@ func main() {
 		println("Error")
 	}
 
+	if teste1 == teste2 && teste1 > 0 {
+		println("Ok")
+	} else {
+		println("Error")
+	}
+
 	// Definição de variável com tipagem automática
 	author := "Vagner Praia"
 	print_author := true
