@@ -213,9 +213,22 @@ func main() {
 
 	fmt.Println(string(arquivo))
 
-	//Exemplo de escrita de arquivo
-	escrita := ioutil.WriteFile("Teste.txt", []byte("Teste"), 0777)
-	showError(escrita)
+	//Exemplo de escrita de arquivo, reescrevendo arquivo já existente e criando um novo arquivo caso arquivo não exista
+	escrita1 := ioutil.WriteFile("Teste.txt", []byte("Teste 1"), 0777)
+	showError(escrita1)
+
+	//Exemplo de escrita de arquivo, adicionando dados em arquivo já existente
+	arquivo_escrita, err_open_escrita := os.OpenFile("Teste.txt", os.O_APPEND, 0777)
+	showError(err_open_escrita)
+	escrita2, err_escrita_2 := arquivo_escrita.WriteString("\nTeste 2")
+	showError(err_escrita_2)
+	arquivo_escrita.Close()
+
+	fmt.Println(string(escrita2))
+
+	arquivo2, erro_leitura_arquivo2 := ioutil.ReadFile("Teste.txt")
+	showError(erro_leitura_arquivo2)
+	fmt.Println(string(arquivo2))
 }
 
 func showError(e error) {
