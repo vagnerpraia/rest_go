@@ -172,6 +172,14 @@ func main() {
 	} else {
 		fmt.Println("Acesso negado")
 	}
+
+	for i := 1; i <= 10; i++ {
+		if i%2 == 0 {
+			fmt.Println("Número par")
+		} else {
+			fmt.Println("Número ímpar")
+		}
+	}
 }
 
 func mostrarNome(carro Carro) {
