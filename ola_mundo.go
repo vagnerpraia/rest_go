@@ -162,10 +162,16 @@ func main() {
 	// Recebendo parâmetros da linha de comando
 	args := os.Args
 	nome_usuario := args[1]
-	idade_usuario := args[2]
+	idade_usuario, err_conv_idade_usuario := strconv.Atoi(args[2])
 
 	fmt.Println("Olá " + nome_usuario)
-	fmt.Println("Idade " + idade_usuario)
+	if err_conv_idade_usuario != nil {
+		fmt.Println("Ocorreu um erro com o parâmetro idade_usuario")
+	} else if idade_usuario >= 18 {
+		fmt.Println("Acesso permitido")
+	} else {
+		fmt.Println("Acesso negado")
+	}
 }
 
 func mostrarNome(carro Carro) {
