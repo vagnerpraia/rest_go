@@ -173,11 +173,13 @@ func main() {
 		fmt.Println("Acesso negado")
 	}
 
-	for i := 1; i <= 10; i++ {
+	// Exemplo de for
+	parametro_fim := 10
+	for i := 1; i <= parametro_fim; i++ {
 		if i%2 == 0 {
-			fmt.Println("Número par")
+			fmt.Println("Número par", i)
 		} else {
-			fmt.Println("Número ímpar")
+			fmt.Println("Número ímpar", i)
 		}
 	}
 }
