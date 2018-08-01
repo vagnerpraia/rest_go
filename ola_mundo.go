@@ -174,13 +174,9 @@ func main() {
 	}
 
 	// Exemplo de for
-	parametro_fim := 10
-	for i := 1; i <= parametro_fim; i++ {
-		if i%2 == 0 {
-			fmt.Println("Número par", i)
-		} else {
-			fmt.Println("Número ímpar", i)
-		}
+	produtos := []string{"Item 1", "Item 2", "Item 3"}
+	for i := 0; i < len(produtos); i++ {
+		fmt.Println("Produto: " + produtos[i])
 	}
 }
 
