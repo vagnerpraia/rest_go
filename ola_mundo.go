@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 )
 
@@ -157,6 +158,14 @@ func main() {
 	} else if idade < 12 {
 		fmt.Println("Criança")
 	}
+
+	// Recebendo parâmetros da linha de comando
+	args := os.Args
+	nome_usuario := args[1]
+	idade_usuario := args[2]
+
+	fmt.Println("Olá " + nome_usuario)
+	fmt.Println("Idade " + idade_usuario)
 }
 
 func mostrarNome(carro Carro) {
