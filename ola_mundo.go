@@ -212,6 +212,10 @@ func main() {
 	showError(erro_leitura_arquivo)
 
 	fmt.Println(string(arquivo))
+
+	//Exemplo de escrita de arquivo
+	escrita := ioutil.WriteFile("Teste.txt", []byte("Teste"), 0777)
+	showError(escrita)
 }
 
 func showError(e error) {
