@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
 )
@@ -167,6 +168,7 @@ func main() {
 	fmt.Println("Olá " + nome_usuario)
 	if err_conv_idade_usuario != nil {
 		fmt.Println("Ocorreu um erro com o parâmetro idade_usuario")
+		showError(err_conv_idade_usuario)
 	} else if idade_usuario >= 18 {
 		fmt.Println("Acesso permitido")
 	} else {
@@ -203,6 +205,18 @@ func main() {
 		fmt.Println("Sábado")
 	default:
 		fmt.Println("Erro")
+	}
+
+	//Exemplo de leitura de arquivo
+	arquivo, erro_leitura_arquivo := ioutil.ReadFile("commands.txt")
+	showError(erro_leitura_arquivo)
+
+	fmt.Println(string(arquivo))
+}
+
+func showError(e error) {
+	if e != nil {
+		panic(e)
 	}
 }
 
