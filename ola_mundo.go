@@ -178,6 +178,11 @@ func main() {
 	for i := 0; i < len(produtos); i++ {
 		fmt.Println("Produto: " + produtos[i])
 	}
+
+	// Exemplo de foreach
+	for _, produto := range produtos {
+		fmt.Println("Produto: " + produto)
+	}
 }
 
 func mostrarNome(carro Carro) {
