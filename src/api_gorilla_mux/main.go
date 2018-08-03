@@ -40,8 +40,8 @@ func get_usuarios(response http.ResponseWriter, request *http.Request) {
 
 	response.Header().Set("Content-Type", "application/json")
 
-	data := json.NewEncoder(response)
-	data.Encode(usuarios)
+	enc := json.NewEncoder(response)
+	enc.Encode(usuarios)
 }
 
 func get_usuario(response http.ResponseWriter, request *http.Request) {
@@ -60,6 +60,6 @@ func get_usuario(response http.ResponseWriter, request *http.Request) {
 
 	response.Header().Set("Content-Type", "application/json")
 
-	data := json.NewEncoder(response)
-	data.Encode(usuarios[id])
+	enc := json.NewEncoder(response)
+	enc.Encode(usuarios[id])
 }
