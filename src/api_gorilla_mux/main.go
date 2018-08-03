@@ -31,21 +31,21 @@ func rota1(response http.ResponseWriter, request *http.Request) {
 	fmt.Fprintf(response, "Rota 1")
 }
 
-func get_usuarios(response http.ResponseWriter, request *http.Request) {
+func get_usuarios(w http.ResponseWriter, r *http.Request) {
 	usuarios := Usuarios{
 		Usuario{1, "Maria da Silva", "maria@mailtest.com", "123456"},
 		Usuario{2, "João da Silva", "joao@mailtest.com", "456789"},
 		Usuario{3, "Paulo da Silva", "paulo@mailtest.com", "789123"},
 	}
 
-	response.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 
-	enc := json.NewEncoder(response)
+	enc := json.NewEncoder(w)
 	enc.Encode(usuarios)
 }
 
-func get_usuario(response http.ResponseWriter, request *http.Request) {
-	params := mux.Vars(request)
+func get_usuario(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
 
 	id, error := strconv.Atoi(params["id"])
 	showError(error)
@@ -58,8 +58,8 @@ func get_usuario(response http.ResponseWriter, request *http.Request) {
 		Usuario{3, "Paulo da Silva", "paulo@mailtest.com", "789123"},
 	}
 
-	response.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 
-	enc := json.NewEncoder(response)
+	enc := json.NewEncoder(w)
 	enc.Encode(usuarios[id])
 }
