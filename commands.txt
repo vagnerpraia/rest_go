@@ -1,5 +1,5 @@
 COMANDOS GO
-go run {PATH_FILE} - Executa o código
+go run {PATH_FILE} - Executa o código (go run *.go para compilar e rodar projetos com vários arquivos)
 go fmt {PATH_FILE} - Formata o arquivo
 got build - Compila o código
 
