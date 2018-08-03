@@ -1,0 +1,7 @@
+COMANDOS GO
+go run {PATH_FILE} - Executa o código
+go fmt {PATH_FILE} - Formata o arquivo
+got build - Compila o código
+
+COMANDOS DEP
+dep init - Inicia um projeto com dep
