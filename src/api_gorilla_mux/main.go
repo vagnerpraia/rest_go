@@ -18,9 +18,10 @@ var usuarios = Usuarios{
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", obterIndex)
-	router.HandleFunc("/usuarios", obterUsuarios)
-	router.HandleFunc("/usuario/{id}", obterUsuario)
+	router.HandleFunc("/", obterIndex).Methods("GET")
+	router.HandleFunc("/usuarios", obterUsuarios).Methods("GET")
+	router.HandleFunc("/usuario/{id}", obterUsuario).Methods("GET")
+	router.HandleFunc("/login", login).Methods("POST")
 
 	port := "3000"
 	server := http.ListenAndServe(":"+port, router)
@@ -48,6 +49,22 @@ func obterUsuario(w http.ResponseWriter, r *http.Request) {
 	id -= 1
 
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	enc := json.NewEncoder(w)
+	enc.Encode(usuarios[id])
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+
+	id, error := strconv.Atoi(params["id"])
+	showError(error)
+
+	id -= 1
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 
 	enc := json.NewEncoder(w)
 	enc.Encode(usuarios[id])
