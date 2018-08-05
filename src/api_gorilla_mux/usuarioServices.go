@@ -8,14 +8,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func obterUsuarios(w http.ResponseWriter, r *http.Request) {
+func getUsuarios(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	enc := json.NewEncoder(w)
 	enc.Encode(usuarios)
 }
 
-func obterUsuario(w http.ResponseWriter, r *http.Request) {
+func getUsuario(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	id, error := strconv.Atoi(params["id"])
