@@ -50,7 +50,7 @@ func postUsuario(w http.ResponseWriter, r *http.Request) {
 	usuario.Id = len(usuarios) + 1
 	usuarios = append(usuarios, usuario)
 
-	data := usuarios
+	data := usuario
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
