@@ -18,5 +18,6 @@ var routes = Routes{
 	getSobreRoute,
 	getUsuarioRoute,
 	getUsuariosRoute,
+	postUsuarioRoute,
 	loginRoute,
 }

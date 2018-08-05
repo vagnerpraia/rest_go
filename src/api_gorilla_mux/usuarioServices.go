@@ -36,6 +36,29 @@ func getUsuario(w http.ResponseWriter, r *http.Request) {
 	enc.Encode(data)
 }
 
+func postUsuario(w http.ResponseWriter, r *http.Request) {
+	dec := json.NewDecoder(r.Body)
+
+	var usuarioReq Usuario
+
+	err := dec.Decode(&usuarioReq)
+	showError(err)
+
+	defer r.Body.Close()
+
+	usuario := usuarioReq
+	usuario.Id = len(usuarios) + 1
+	usuarios = append(usuarios, usuario)
+
+	data := usuarios
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	enc := json.NewEncoder(w)
+	enc.Encode(data)
+}
+
 func login(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 
