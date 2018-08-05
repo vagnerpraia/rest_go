@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -30,6 +31,40 @@ func getUsuario(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	data := usuarios[id]
+
+	enc := json.NewEncoder(w)
+	enc.Encode(data)
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	dec := json.NewDecoder(r.Body)
+
+	var usuarioReq Usuario
+
+	err := dec.Decode(&usuarioReq)
+	showError(err)
+
+	defer r.Body.Close()
+
+	var usuario Usuario
+
+	for _, u := range usuarios {
+		if u.Email == usuarioReq.Email && u.Senha == usuarioReq.Senha {
+			fmt.Println(u)
+			usuario = u
+			break
+		}
+	}
+
+	data := usuario
+
+	w.Header().Set("Content-Type", "application/json")
+
+	if data.Id == 0 {
+		w.WriteHeader(http.StatusNoContent)
+	} else {
+		w.WriteHeader(http.StatusOK)
+	}
 
 	enc := json.NewEncoder(w)
 	enc.Encode(data)
