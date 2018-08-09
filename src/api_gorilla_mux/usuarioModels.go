@@ -5,10 +5,10 @@ import (
 )
 
 type Usuario struct {
-	Id    bson.ObjectId `json: _id`
-	Nome  string        `json: "nome"`
-	Email string        `json: "email"`
-	Senha string        `json: "senha"`
+	Id    bson.ObjectId `json:"_id" bson:"_id"`
+	Nome  string        `json:"nome" bson:"nome"`
+	Email string        `json:"email" bson:"email"`
+	Senha string        `json:"senha" bson:"senha"`
 }
 
 type Usuarios []Usuario
@@ -26,7 +26,6 @@ var collection = db.C("usuarios")
 func insertUsuario(usuario Usuario) *Usuario {
 	usuarioDb := &Usuario{Id: bson.NewObjectId(), Nome: usuario.Nome, Email: usuario.Email, Senha: usuario.Senha}
 	err := collection.Insert(usuarioDb)
-	//_, err := collection.UpsertId(usuarioDb.ID, usuarioDb)
 	showError(err)
 
 	return usuarioDb
