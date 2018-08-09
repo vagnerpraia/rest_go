@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -13,7 +12,7 @@ func getUsuarios(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	dataResponse := usuarios
+	dataResponse := getUsuariosModel()
 
 	enc := json.NewEncoder(w)
 	enc.Encode(dataResponse)
@@ -21,29 +20,22 @@ func getUsuarios(w http.ResponseWriter, r *http.Request) {
 
 func getUsuario(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
-
-	id, err := strconv.Atoi(params["id"])
-	showError(err)
-
-	id -= 1
+	id := params["id"]
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	dataResponse := usuarios[id]
+	dataResponse := getUsuarioModel(id)
 
 	enc := json.NewEncoder(w)
 	enc.Encode(dataResponse)
 }
 
 func postUsuario(w http.ResponseWriter, r *http.Request) {
-	dec := json.NewDecoder(r.Body)
-
 	var usuarioRequest Usuario
-
+	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioRequest)
 	showError(err)
-
 	defer r.Body.Close()
 
 	dataResponse := insertUsuario(usuarioRequest)
@@ -56,13 +48,10 @@ func postUsuario(w http.ResponseWriter, r *http.Request) {
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	dec := json.NewDecoder(r.Body)
-
 	var usuarioReq Usuario
-
+	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioReq)
 	showError(err)
-
 	defer r.Body.Close()
 
 	var usuario Usuario
