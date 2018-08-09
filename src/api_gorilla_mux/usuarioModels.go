@@ -30,3 +30,16 @@ func insertUsuario(usuario Usuario) *Usuario {
 
 	return usuarioDb
 }
+
+func updateUsuario(usuario Usuario) *Usuario {
+	usuarioDb := &Usuario{Id: usuario.Id, Nome: usuario.Nome, Email: usuario.Email, Senha: usuario.Senha}
+
+	if len(usuario.Id) == 12 {
+		err := collection.Update(usuarioDb.Id, usuarioDb)
+		showError(err)
+
+		return usuarioDb
+	} else {
+		return nil
+	}
+}
