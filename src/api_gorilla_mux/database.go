@@ -1,13 +1,16 @@
 package main
 
 import (
-	_ "github.com/globalsign/mgo"
+	"github.com/globalsign/mgo"
 )
 
-func connectMongoDB() {
+func getSessionMongoDB() *mgo.Session {
+	session, err := mgo.Dial("mongodb://localhost")
+	showError(err)
 
+	return session
 }
 
-func closeMongoDB() {
+func closeSessionMongoDB() {
 
 }

@@ -13,10 +13,10 @@ func getUsuarios(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	data := usuarios
+	dataResponse := usuarios
 
 	enc := json.NewEncoder(w)
-	enc.Encode(data)
+	enc.Encode(dataResponse)
 }
 
 func getUsuario(w http.ResponseWriter, r *http.Request) {
@@ -30,33 +30,29 @@ func getUsuario(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	data := usuarios[id]
+	dataResponse := usuarios[id]
 
 	enc := json.NewEncoder(w)
-	enc.Encode(data)
+	enc.Encode(dataResponse)
 }
 
 func postUsuario(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 
-	var usuarioReq Usuario
+	var usuarioRequest Usuario
 
-	err := dec.Decode(&usuarioReq)
+	err := dec.Decode(&usuarioRequest)
 	showError(err)
 
 	defer r.Body.Close()
 
-	usuario := usuarioReq
-	usuario.Id = len(usuarios) + 1
-	usuarios = append(usuarios, usuario)
-
-	data := usuario
+	dataResponse := insertUsuario(usuarioRequest)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
 	enc := json.NewEncoder(w)
-	enc.Encode(data)
+	enc.Encode(dataResponse)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -79,16 +75,16 @@ func login(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	data := usuario
+	dataResponse := usuario
 
 	w.Header().Set("Content-Type", "application/json")
 
-	if data.Id == 0 {
+	if dataResponse.Nome == "" {
 		w.WriteHeader(http.StatusNoContent)
 	} else {
 		w.WriteHeader(http.StatusOK)
 	}
 
 	enc := json.NewEncoder(w)
-	enc.Encode(data)
+	enc.Encode(dataResponse)
 }

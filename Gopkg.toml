@@ -4,4 +4,4 @@
 
 [[constraint]]
   name = "github.com/globalsign/mgo"
-  version = "2018.06.15"
+  version = "r2018.06.15"
