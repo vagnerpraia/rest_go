@@ -1,4 +1,4 @@
-package main
+package model
 
 import (
 	"net/http"
@@ -12,12 +12,3 @@ type Route struct {
 }
 
 type Routes []Route
-
-var routes = Routes{
-	getIndexRoute,
-	getSobreRoute,
-	getUsuarioRoute,
-	getUsuariosRoute,
-	postUsuarioRoute,
-	loginRoute,
-}

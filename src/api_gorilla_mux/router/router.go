@@ -1,10 +1,10 @@
-package main
+package router
 
 import (
 	"github.com/gorilla/mux"
 )
 
-func router() *mux.Router {
+func GetRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
 	for _, route := range routes {

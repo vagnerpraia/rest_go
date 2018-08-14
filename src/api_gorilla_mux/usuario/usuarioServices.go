@@ -1,4 +1,4 @@
-package main
+package usuario
 
 import (
 	"encoding/json"
@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/treinamento_go/src/api_gorilla_mux/util"
 )
 
 func getUsuarios(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +36,7 @@ func postUsuario(w http.ResponseWriter, r *http.Request) {
 	var usuarioRequest Usuario
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioRequest)
-	showError(err)
+	util.ShowError(err)
 	defer r.Body.Close()
 
 	dataResponse := insertUsuario(usuarioRequest)
@@ -51,7 +52,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	var usuarioReq Usuario
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioReq)
-	showError(err)
+	util.ShowError(err)
 	defer r.Body.Close()
 
 	var usuario Usuario
