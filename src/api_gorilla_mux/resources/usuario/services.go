@@ -2,8 +2,9 @@ package usuario
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
+
+	"github.com/treinamento_go/src/api_gorilla_mux/model"
 
 	"github.com/gorilla/mux"
 	"github.com/treinamento_go/src/api_gorilla_mux/util"
@@ -49,32 +50,38 @@ func postUsuario(w http.ResponseWriter, r *http.Request) {
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	var usuarioReq Usuario
+	var response model.Response
+	var usuarioRequest Usuario
+
 	dec := json.NewDecoder(r.Body)
-	err := dec.Decode(&usuarioReq)
-	util.ShowError(err)
+	err := dec.Decode(&usuarioRequest)
 	defer r.Body.Close()
 
-	var usuario Usuario
+	if err == nil {
+		var usuario Usuario
 
-	for _, u := range usuarios {
-		if u.Email == usuarioReq.Email && u.Senha == usuarioReq.Senha {
-			fmt.Println(u)
-			usuario = u
-			break
+		for _, u := range usuarios {
+			if u.Email == usuarioRequest.Email && u.Senha == usuarioRequest.Senha {
+				usuario = u
+				break
+			}
 		}
-	}
 
-	dataResponse := usuario
+		if usuario.Nome == "" {
+			response.Code = http.StatusNoContent
+		} else {
+			response.Code = http.StatusOK
+			response.Message = "Usuário retornado."
+			response.Data = usuario
+		}
+	} else {
+		response.Code = http.StatusInternalServerError
+		response.Message = "Ocorreu um erro."
+	}
 
 	w.Header().Set("Content-Type", "application/json")
-
-	if dataResponse.Nome == "" {
-		w.WriteHeader(http.StatusNoContent)
-	} else {
-		w.WriteHeader(http.StatusOK)
-	}
+	w.WriteHeader(response.Code)
 
 	enc := json.NewEncoder(w)
-	enc.Encode(dataResponse)
+	enc.Encode(response)
 }
