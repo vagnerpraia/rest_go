@@ -4,55 +4,69 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/treinamento_go/src/api_gorilla_mux/model"
-
 	"github.com/gorilla/mux"
+	"github.com/treinamento_go/src/api_gorilla_mux/model"
 	"github.com/treinamento_go/src/api_gorilla_mux/util"
 )
 
+var response model.Response
+
 func getUsuarios(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+	data, err := getUsuariosModel()
 
-	dataResponse := getUsuariosModel()
+	if err == nil {
+		response.Code = http.StatusOK
+		response.Message = "Usuário(s) retornado(s)."
+		response.Data = data
+	} else {
+		util.HandlerError(&err, http.StatusInternalServerError, "Ocorreu um erro.")
+	}
 
-	enc := json.NewEncoder(w)
-	enc.Encode(dataResponse)
+	util.EncodeResponseJson(w, response)
 }
 
 func getUsuario(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	id := params["id"]
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+	data, err := getUsuarioModel(id)
 
-	dataResponse := getUsuarioModel(id)
+	if err == nil {
+		response.Code = http.StatusOK
+		response.Message = "Usuário retornado."
+		response.Data = data
+	} else {
+		util.HandlerError(&err, http.StatusInternalServerError, "Ocorreu um erro.")
+	}
 
-	enc := json.NewEncoder(w)
-	enc.Encode(dataResponse)
+	util.EncodeResponseJson(w, response)
 }
 
 func postUsuario(w http.ResponseWriter, r *http.Request) {
 	var usuarioRequest Usuario
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioRequest)
-	util.ShowError(err)
 	defer r.Body.Close()
 
-	dataResponse := insertUsuario(usuarioRequest)
+	if err == nil {
+		data, err := insertUsuario(usuarioRequest)
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+		if err == nil {
+			response.Code = http.StatusOK
+			response.Message = "Usuário criado."
+			response.Data = data
+		} else {
+			util.HandlerError(&err, http.StatusInternalServerError, "Ocorreu um erro.")
+		}
+	} else {
+		util.HandlerError(&err, http.StatusInternalServerError, "Ocorreu um erro.")
+	}
 
-	enc := json.NewEncoder(w)
-	enc.Encode(dataResponse)
+	util.EncodeResponseJson(w, response)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	var response model.Response
 	var usuarioRequest Usuario
-
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioRequest)
 	defer r.Body.Close()
@@ -75,13 +89,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 			response.Data = usuario
 		}
 	} else {
-		response.Code = http.StatusInternalServerError
-		response.Message = "Ocorreu um erro."
+		util.HandlerError(&err, http.StatusInternalServerError, "Ocorreu um erro.")
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(response.Code)
-
-	enc := json.NewEncoder(w)
-	enc.Encode(response)
+	util.EncodeResponseJson(w, response)
 }

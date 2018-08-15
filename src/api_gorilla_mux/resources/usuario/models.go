@@ -3,7 +3,6 @@ package usuario
 import (
 	"github.com/globalsign/mgo/bson"
 	"github.com/treinamento_go/src/api_gorilla_mux/database"
-	"github.com/treinamento_go/src/api_gorilla_mux/util"
 )
 
 type Usuario struct {
@@ -25,42 +24,49 @@ var session = database.GetSessionMongoDB()
 var db = session.DB("godb")
 var collection = db.C("usuarios")
 
-func getUsuariosModel() []Usuario {
+func getUsuariosModel() (data []Usuario, err error) {
 	var usuariosDb Usuarios
-	err := collection.Find(nil).Sort("nome").All(&usuariosDb)
-	util.ShowError(err)
+	err = collection.Find(nil).Sort("nome").All(&usuariosDb)
 
-	return usuariosDb
+	if err == nil {
+		data = usuariosDb
+	}
+
+	return data, err
 }
 
-func getUsuarioModel(id string) Usuario {
-	var usuarioDb Usuario
-
+func getUsuarioModel(id string) (data Usuario, err error) {
 	if bson.IsObjectIdHex(id) {
 		idBson := bson.ObjectIdHex(id)
-		err := collection.FindId(idBson).One(&usuarioDb)
-		util.ShowError(err)
+
+		var usuarioDb Usuario
+		err = collection.FindId(idBson).One(&usuarioDb)
+		if err == nil {
+			data = usuarioDb
+		}
 	}
 
-	return usuarioDb
+	return data, err
 }
 
-func insertUsuario(usuario Usuario) Usuario {
+func insertUsuario(usuario Usuario) (data Usuario, err error) {
 	usuarioDb := Usuario{Id: bson.NewObjectId(), Nome: usuario.Nome, Email: usuario.Email, Senha: usuario.Senha}
-	err := collection.Insert(&usuarioDb)
-	util.ShowError(err)
-
-	return usuarioDb
-}
-
-func updateUsuario(usuario Usuario) Usuario {
-	var usuarioDb Usuario
-
-	if len(usuario.Id) == 12 {
-		usuarioDb = Usuario{Id: usuario.Id, Nome: usuario.Nome, Email: usuario.Email, Senha: usuario.Senha}
-		err := collection.Update(&usuarioDb.Id, &usuarioDb)
-		util.ShowError(err)
+	err = collection.Insert(&usuarioDb)
+	if err == nil {
+		data = usuarioDb
 	}
 
-	return usuarioDb
+	return data, err
+}
+
+func updateUsuario(usuario Usuario) (data Usuario, err error) {
+	if len(usuario.Id) == 12 {
+		usuarioDb := Usuario{Id: usuario.Id, Nome: usuario.Nome, Email: usuario.Email, Senha: usuario.Senha}
+		err = collection.Update(&usuarioDb.Id, &usuarioDb)
+		if err == nil {
+			data = usuarioDb
+		}
+	}
+
+	return data, err
 }
