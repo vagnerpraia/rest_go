@@ -10,7 +10,7 @@ import (
 var response model.Response
 
 func getSobre(w http.ResponseWriter, r *http.Request) {
-	data := "API Rest Go com gorilla/mux"
+	data := sobre
 
 	response.Code = http.StatusOK
 	response.Message = "Informação sobre a aplicação retornada."
