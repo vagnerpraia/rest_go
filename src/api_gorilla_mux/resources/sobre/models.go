@@ -6,5 +6,3 @@ type Sobre struct {
 	Autor  string `json:"autor" bson:"autor"`
 	Email  string `json:"email" bson:"email"`
 }
-
-var sobre = Sobre{Nome: "API Rest Go com gorilla/mux", Versao: "0.0.1", Autor: "Vagner Praia", Email: "vagnerpraia@gmail.com"}
