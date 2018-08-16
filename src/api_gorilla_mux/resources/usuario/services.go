@@ -74,19 +74,25 @@ func login(w http.ResponseWriter, r *http.Request) {
 	if err == nil {
 		var usuario Usuario
 
-		for _, u := range usuarios {
-			if u.Email == usuarioRequest.Email && u.Senha == usuarioRequest.Senha {
-				usuario = u
-				break
-			}
-		}
+		usuarios, err := getUsuariosModel()
 
-		if usuario.Nome == "" {
-			response.Code = http.StatusNoContent
+		if err == nil {
+			for _, u := range usuarios {
+				if u.Email == usuarioRequest.Email && u.Senha == usuarioRequest.Senha {
+					usuario = u
+					break
+				}
+			}
+
+			if usuario.Nome == "" {
+				response.Code = http.StatusNoContent
+			} else {
+				response.Code = http.StatusOK
+				response.Message = "Usuário retornado."
+				response.Data = usuario
+			}
 		} else {
-			response.Code = http.StatusOK
-			response.Message = "Usuário retornado."
-			response.Data = usuario
+			util.HandlerError(&err, http.StatusInternalServerError, "Ocorreu um erro.")
 		}
 	} else {
 		util.HandlerError(&err, http.StatusInternalServerError, "Ocorreu um erro.")

@@ -55,9 +55,3 @@ func updateUsuario(usuario Usuario) (data Usuario, err error) {
 
 	return data, err
 }
-
-var usuarios = Usuarios{
-	Usuario{bson.NewObjectId(), "Maria da Silva", "maria@mailtest.com", "123456"},
-	Usuario{bson.NewObjectId(), "João da Silva", "joao@mailtest.com", "456789"},
-	Usuario{bson.NewObjectId(), "Paulo da Silva", "paulo@mailtest.com", "789123"},
-}
