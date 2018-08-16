@@ -9,8 +9,8 @@ import (
 
 var response model.Response
 
-func getSobre(w http.ResponseWriter, r *http.Request) {
-	data := sobre
+func getSobreService(w http.ResponseWriter, r *http.Request) {
+	data := getSobreDao()
 
 	response.Code = http.StatusOK
 	response.Message = "Informação sobre a aplicação retornada."
