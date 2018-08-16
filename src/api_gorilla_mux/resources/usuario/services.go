@@ -74,16 +74,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 	if err == nil {
 		var usuario Usuario
 
-		usuarios, err := getUsuariosModel()
+		usuario, err := loginModel(usuarioRequest)
 
 		if err == nil {
-			for _, u := range usuarios {
-				if u.Email == usuarioRequest.Email && u.Senha == usuarioRequest.Senha {
-					usuario = u
-					break
-				}
-			}
-
 			if usuario.Nome == "" {
 				response.Code = http.StatusNoContent
 			} else {

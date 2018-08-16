@@ -55,3 +55,14 @@ func updateUsuario(usuario Usuario) (data Usuario, err error) {
 
 	return data, err
 }
+
+func loginModel(usuario Usuario) (data Usuario, err error) {
+	var usuarioDb Usuario
+
+	err = collection.Find(bson.M{"email": usuario.Email, "senha": usuario.Senha}).One(&usuarioDb)
+	if err == nil {
+		data = usuarioDb
+	}
+
+	return data, err
+}
