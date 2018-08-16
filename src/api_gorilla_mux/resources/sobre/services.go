@@ -1,16 +1,20 @@
 package sobre
 
 import (
-	"encoding/json"
 	"net/http"
+
+	"github.com/treinamento_go/src/api_gorilla_mux/model"
+	"github.com/treinamento_go/src/api_gorilla_mux/util"
 )
+
+var response model.Response
 
 func getSobre(w http.ResponseWriter, r *http.Request) {
 	data := "API Rest Go com gorilla/mux"
 
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+	response.Code = http.StatusOK
+	response.Message = "Informação sobre a aplicação retornada."
+	response.Data = data
 
-	enc := json.NewEncoder(w)
-	enc.Encode(data)
+	util.EncodeResponseJson(w, response)
 }
