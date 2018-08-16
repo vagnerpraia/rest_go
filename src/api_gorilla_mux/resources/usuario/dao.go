@@ -9,7 +9,7 @@ var session = database.GetSessionMongoDB()
 var db = session.DB("godb")
 var collection = db.C("usuarios")
 
-func getUsuariosModel() (data []Usuario, err error) {
+func getUsuariosDao() (data []Usuario, err error) {
 	var usuariosDb Usuarios
 	err = collection.Find(nil).Sort("nome").All(&usuariosDb)
 
@@ -20,7 +20,7 @@ func getUsuariosModel() (data []Usuario, err error) {
 	return data, err
 }
 
-func getUsuarioModel(id string) (data Usuario, err error) {
+func getUsuarioDao(id string) (data Usuario, err error) {
 	if bson.IsObjectIdHex(id) {
 		idBson := bson.ObjectIdHex(id)
 
@@ -34,7 +34,7 @@ func getUsuarioModel(id string) (data Usuario, err error) {
 	return data, err
 }
 
-func insertUsuario(usuario Usuario) (data Usuario, err error) {
+func insertUsuarioDao(usuario Usuario) (data Usuario, err error) {
 	usuarioDb := Usuario{Id: bson.NewObjectId(), Nome: usuario.Nome, Email: usuario.Email, Senha: usuario.Senha}
 	err = collection.Insert(&usuarioDb)
 	if err == nil {
@@ -44,7 +44,7 @@ func insertUsuario(usuario Usuario) (data Usuario, err error) {
 	return data, err
 }
 
-func updateUsuario(usuario Usuario) (data Usuario, err error) {
+func updateUsuarioDao(usuario Usuario) (data Usuario, err error) {
 	if len(usuario.Id) == 12 {
 		usuarioDb := Usuario{Id: usuario.Id, Nome: usuario.Nome, Email: usuario.Email, Senha: usuario.Senha}
 		err = collection.Update(&usuarioDb.Id, &usuarioDb)
@@ -56,7 +56,7 @@ func updateUsuario(usuario Usuario) (data Usuario, err error) {
 	return data, err
 }
 
-func loginModel(usuario Usuario) (data Usuario, err error) {
+func loginDao(usuario Usuario) (data Usuario, err error) {
 	var usuarioDb Usuario
 
 	err = collection.Find(bson.M{"email": usuario.Email, "senha": usuario.Senha}).One(&usuarioDb)

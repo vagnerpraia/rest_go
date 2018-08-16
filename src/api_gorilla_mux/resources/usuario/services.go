@@ -11,8 +11,8 @@ import (
 
 var response model.Response
 
-func getUsuarios(w http.ResponseWriter, r *http.Request) {
-	data, err := getUsuariosModel()
+func getUsuariosService(w http.ResponseWriter, r *http.Request) {
+	data, err := getUsuariosDao()
 
 	if err == nil {
 		response.Code = http.StatusOK
@@ -25,11 +25,11 @@ func getUsuarios(w http.ResponseWriter, r *http.Request) {
 	util.EncodeResponseJson(w, response)
 }
 
-func getUsuario(w http.ResponseWriter, r *http.Request) {
+func getUsuarioService(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	id := params["id"]
 
-	data, err := getUsuarioModel(id)
+	data, err := getUsuarioDao(id)
 
 	if err == nil {
 		response.Code = http.StatusOK
@@ -42,14 +42,14 @@ func getUsuario(w http.ResponseWriter, r *http.Request) {
 	util.EncodeResponseJson(w, response)
 }
 
-func postUsuario(w http.ResponseWriter, r *http.Request) {
+func postUsuarioService(w http.ResponseWriter, r *http.Request) {
 	var usuarioRequest Usuario
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioRequest)
 	defer r.Body.Close()
 
 	if err == nil {
-		data, err := insertUsuario(usuarioRequest)
+		data, err := insertUsuarioDao(usuarioRequest)
 
 		if err == nil {
 			response.Code = http.StatusOK
@@ -65,7 +65,7 @@ func postUsuario(w http.ResponseWriter, r *http.Request) {
 	util.EncodeResponseJson(w, response)
 }
 
-func login(w http.ResponseWriter, r *http.Request) {
+func loginService(w http.ResponseWriter, r *http.Request) {
 	var usuarioRequest Usuario
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&usuarioRequest)
@@ -74,7 +74,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	if err == nil {
 		var usuario Usuario
 
-		usuario, err := loginModel(usuarioRequest)
+		usuario, err := loginDao(usuarioRequest)
 
 		if err == nil {
 			if usuario.Nome == "" {
