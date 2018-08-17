@@ -17,7 +17,7 @@ settings:
     force: false
     interval: 0s
 server:
-  status: true
+  status: false
   open: false
   port: 3000
   host: "localhost"
