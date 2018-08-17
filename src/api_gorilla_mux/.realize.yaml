@@ -12,6 +12,7 @@ settings:
       status: false
       path: ""
       name: .r.errors.log
+  flimit: 10
   legacy:
     force: false
     interval: 0s
