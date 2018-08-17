@@ -6,3 +6,8 @@ got build - Compila o código
 COMANDOS DEP
 dep init - Inicia um projeto com dep
 dep ensure - Atualiza o projeto com as dependências adicionados no arquivo Gopkg.toml
+
+COMANDOS REALIZE
+realize start - Cria o arquivo de configuração .realize.yaml.
+realize add - Adiciona o projeto ao arquivo .realize.yaml.
+realize init - Realiza a configuração do .realize.yaml.
