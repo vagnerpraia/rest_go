@@ -24,14 +24,6 @@ schema:
 - name: "Treinamento Go"
   path: .
   commands:
-    vet:
-      status: true
-    fmt:
-      status: true
-    test:
-      status: true
-    generate:
-      status: true
     install:
       status: true
     run:
@@ -41,12 +33,6 @@ schema:
     - go
     paths:
     - /
-    - /database
-    - /model
-    - /resources/sobre
-    - /resources/usuario
-    - /router
-    - /util
     ignored_paths:
     - .git
     - .realize
