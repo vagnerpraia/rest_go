@@ -2,7 +2,7 @@ package usuario
 
 import (
 	"github.com/globalsign/mgo/bson"
-	"github.com/treinamento_go/src/api_gorilla_mux/database"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/database"
 )
 
 var session = database.GetSessionMongoDB()

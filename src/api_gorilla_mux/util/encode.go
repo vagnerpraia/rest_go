@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/treinamento_go/src/api_gorilla_mux/model"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/model"
 )
 
 func EncodeResponseJson(w http.ResponseWriter, response model.Response) {

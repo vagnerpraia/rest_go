@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/treinamento_go/src/api_gorilla_mux/router"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/router"
 )
 
 func main() {

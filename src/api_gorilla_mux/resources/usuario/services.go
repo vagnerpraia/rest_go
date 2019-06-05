@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/treinamento_go/src/api_gorilla_mux/model"
-	"github.com/treinamento_go/src/api_gorilla_mux/util"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/model"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/util"
 )
 
 var response model.Response

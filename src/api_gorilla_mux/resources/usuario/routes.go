@@ -1,7 +1,7 @@
 package usuario
 
 import (
-	"github.com/treinamento_go/src/api_gorilla_mux/model"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/model"
 )
 
 var GetUsuarioRoute = model.Route{"GET", "/usuario/{id}", "getUsuario", getUsuarioService}

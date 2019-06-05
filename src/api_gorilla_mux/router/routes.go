@@ -1,9 +1,9 @@
 package router
 
 import (
-	"github.com/treinamento_go/src/api_gorilla_mux/model"
-	"github.com/treinamento_go/src/api_gorilla_mux/resources/sobre"
-	"github.com/treinamento_go/src/api_gorilla_mux/resources/usuario"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/model"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/resources/sobre"
+	"github.com/vagnerpraia/treinamento_go/src/api_gorilla_mux/resources/usuario"
 )
 
 var routes = model.Routes{
